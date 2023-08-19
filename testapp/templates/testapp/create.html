@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>メールの送信内容</h2>
+    <form action="/mail" method="POST">
+        
+        <p>
+            説明書<br>
+            <label>
+                <input class="Explanation" type="radio" name="explanation" value="1" onclick="formExplanation()" checked>いらない
+            </label>
+            
+            <label>
+                <input class="Explanation" type="radio" name="explanation" value="1" onclick="formExplanation()">いる
+            </label>
+            <span id="sentence">
+                　タイトル：メールのタイトル<br>
+                　送信先：教授のメールアドレス<br>
+                　　間違っている場合があるのでシラバス等で確認する事を推奨します<br>
+                　送信元：貴方のメールアドレス<br>
+                　生成結果：文章生成されたメールの本文<br>
+            </span>
+        </p>
+        
+        <p>
+        <label for="subject">タイトル</label>
+        <input type="text" name="subject" value={{ create.Create1 }}></input>
+        </p>
+            
+        <p>
+        <label for="destination">送信先</label>
+        <input type="email" name="destination" value={{ create.Create2 }}></input>
+        </p>
+
+        <p>
+        <label for="address">送信元</label>
+        <input type="email" name="address" value={{ create.Create3 }}></input>
+        </p>
+
+        <p>
+        <label for="result">生成結果</label>
+        <textarea id="copy" type="text" name="result">{{ create.Create4 }}</textarea>
+        </p>
+
+        <p>
+            <button onclick="cp()" type="button">コピー</button>
+        </p>
+        
+
+        <p>
+           ＜注意事項＞<br>
+            　●いたずら等防止のため、教授に直接送ることは出来ません<br>
+            　●下部の送信ボタンを押すと 2022.fit.team3@gmail.com から<br>
+            　　貴方のメールアドレスに生成結果が送られます<br>
+            　●メールが来ない際は迷惑メールフォルダを確認してみて下さい<br>
+        </p>
+
+        <p>
+            <input type="radio" name="check" value="" required>確認しました         
+        </p>
+
+        <p>
+        <button type="submit">送信</button>
+        </p>
+        
+
+    </form>
+    
+    <script>
+        function cp(){
+            var txt = document.getElementById("copy");
+            txt.select();
+            document.execCommand("Copy");
+        }
+    </script>
+    
+    <style>
+    textarea{
+     width:100%;
+     height:300px;
+     resize:vertical;
+    }
+    </style>
+    
+</div>
+<script src="{{ url_for('static', filename='javascript/sample.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,299 @@
+{% extends "layout.html" %}
+
+<link rel="stylesheet" href=""C:\Users\choko\OneDrive - 福岡工業大学\ドキュメント\top.scss"">
+
+{% block content %}
+<div class="container mt-4">
+    <h2>メール送信</h2>
+    <form action="/create" method="POST"> 
+
+        <p></p>
+
+        <p>
+            説明書<br>
+            <label>
+                <input class="Explanation" type="radio" name="explanation" value="1" onclick="formExplanation()" checked>いらない
+            </label>
+            
+            <label>
+                <input class="Explanation" type="radio" name="explanation" value="1" onclick="formExplanation()">いる
+            </label>
+            <span id="sentence">
+                　学籍番号：貴方の学籍番号を入力して下さい<br>
+                　名前：貴方の名前を入力して下さい<br>
+                　電話番号：貴方の電話番号を入力して下さい<br>
+                　タイトル：メールのタイトルを入力して下さい<br>
+                　要件：文章生成にどのデータセットを使用するか選択して下さい<br>
+                　送信先：どの教授に送りたいのか選択して下さい<br>
+                　講義時間：いつの講義に関するメールが送りたいのか選択して下さい<br>
+            </span>
+        </p>
+
+        <p>
+            <label for="number">学籍番号</label>
+            <input type="text" name="number" placeholder="21A20XX"></input>
+        </p>
+        
+        <p>
+            <label for="name">名前</label>
+            <input type="text" name="name" placeholder="福工 太郎"></input>
+        </p>
+
+        <p>
+            <label for="tel">電話番号</label>
+            <input type="tel" name="tel" placeholder="012-3456-7890"></input>
+        </p>
+
+        <p>
+            <label for="requirement">要件</label>
+            <select name="requirement" id="requirement">
+                <option value="">--- 要件を選択してください ---</option>
+                <option value="1">欠席の連絡</option>
+                <option value="2">研究室訪問についての連絡</option>
+            </select>
+        </p>
+        
+        <p>
+            <!--
+                selectのnameとidの値はlabelの値と同じにしておいて下さい
+            -->
+            <label for="destination">送信先</label>
+            <select name="destination" id="destination">
+                <option value="who">--- 宛先を選択してください ---</option>
+                
+                <optgroup label="情報工学部">
+                    <optgroup label="情報工学科">
+                        <option value="000">石原 真紀夫先生</option>
+                        <option value="001">種田 和正先生</option>
+                        <option value="002">柏 浩司先生</option>
+                        <option value="003">正代 隆義先生</option>
+                        <option value="004">馬場 謙介先生</option>
+                        <option value="005">福本 誠先生</option>
+                        <option value="006">前田 道治先生</option>
+                        <option value="007">山内 寛行先生</option>
+                        <option value="008">山澤 一誠先生</option>
+                        <option value="009">有吉 哲也先生</option>
+                        <option value="010">家永 貴史先生</option>
+                        <option value="011">佐竹 純二先生</option>
+                        <option value="012">柴田 望洋先生</option>
+                        <option value="013">戸田 航史先生</option>
+                        <option value="014">中川 正基先生</option>
+                        <option value="015">宮田 考史先生</option>
+                        <option value="016">山盛 厚伺先生</option>
+                        <option value="017">相良 哲生先生</option>
+                        <option value="018">兵頭 和幸先生</option>
+                        <option value="019">山口 裕先生</option>
+                    </optgroup>
+                    <optgroup label="情報通信工学科">
+                        <option value="020">石田 智行先生</option>
+                        <option value="021">糸川 銚先生</option>
+                        <option value="022">内田 法彦先生</option>
+                        <option value="023">杉田 薫先生</option>
+                        <option value="024">中嶋 徳正先生</option>
+                        <option value="025">中村 龍史先生</option>
+                        <option value="026">西田 茂人先生</option>
+                        <option value="027">バロリ レオナルド先生</option>
+                        <option value="028">藤崎 清孝先生</option>
+                        <option value="029">前田 洋先生</option>
+                        <option value="030">松尾 慶太先生</option>
+                        <option value="031">山元 規靖先生</option>
+                        <option value="032">渡辺 仰基先生</option>
+                        <option value="033">池田 誠先生</option>
+                    </optgroup>
+                    <optgroup label="情報システム工学科">
+                        <option value="036">山口 明宏先生</option>
+                        <option value="037">木室 義彦先生</option>
+                        <option value="038">徳安 達士先生</option>
+                        <option value="039">利光 和彦先生</option>
+                        <option value="040">森園 哲也先生</option>
+                        <option value="041">吉田 耕一先生</option>
+                        <option value="042">作田 誠先生</option>
+                        <option value="043">下戸 健先生</option>
+                        <option value="044">丸山 勳先生</option>
+                        <option value="045">松原 裕之先生</option>
+                        <option value="046">山本 貴弘先生</option>
+                        <option value="047">菊田 俊幸先生</option>
+                        <option value="048">田村 かおり先生</option>
+                        <option value="049">李 知炯先生</option>
+                    </optgroup>
+                    <optgroup label="システムマネジメント学科"> 
+                        <option value="050">井口 修一先生</option>
+                        <option value="051">宋 宇先生</option>
+                        <option value="052">田嶋 拓也先生</option>
+                        <option value="053">藤岡 寛之先生</option>
+                        <option value="054">前原 秀明先生</option>
+                        <option value="055">クラ エリス先生</option>
+                        <option value="056">小林 稔先生</option>
+                        <option value="057">髙橋 啓先生</option>
+                        <option value="058">傅 靖先生</option>
+                        <option value="059">竹之内 宏先生</option>
+                    </optgroup>
+                </optgroup>
+                
+                <optgroup label="工学部">
+                    <optgroup label="電子情報工学科">
+                        <option value="100">江口 啓先生</option>
+                        <option value="101">片山 龍一先生</option>
+                        <option value="102">近木 祐一郎先生</option>
+                        <option value="103">倪 宝栄先生</option>
+                        <option value="104">前田 文彦先生</option>
+                        <option value="105">松井 義弘先生</option>
+                        <option value="106">松木 裕二先生</option>
+                        <option value="107">盧 存偉先生</option>
+                        <option value="108">小野美 武先生</option>
+                        <option value="109">田村 瞳先生</option>
+                        <option value="110">中村 壮智先生</option>
+                        <option value="111">巫 霄先生</option>
+                        <option value="112">野瀬 敏洋先生</option>
+                        <option value="113">家形 諭先生</option>
+                    </optgroup>
+                    <optgroup label="生命環境化学科">
+                        <option value="114">赤木 紀之先生</option>
+                        <option value="115">蒲池 高志先生</option>
+                        <option value="116">北山 幹人先生</option>
+                        <option value="117">桑原 順子先生</option>
+                        <option value="118">呉 行正先生</option>
+                        <option value="119">永田 純一先生</option>
+                        <option value="120">松山 清先生</option>
+                        <option value="121">三田 肇先生</option>
+                        <option value="122">天田 啓先生</option>
+                        <option value="123">久保 裕也先生</option>
+                        <option value="124">長谷(田丸) 靜香先生</option>
+                        <option value="125">宮元 展義先生</option>
+                        <option value="126">福永 知則先生</option>
+                    </optgroup>
+                    <optgroup label="知能機械工学科">
+                        <option value="127">江頭 竜先生</option>
+                        <option value="128">朱 世杰先生</option>
+                        <option value="131">数仲 馬恋典先生</option>
+                        <option value="132">仙波 卓弥先生</option>
+                        <option value="133">髙津 康幸先生</option>
+                        <option value="134">廣田 健治先生</option>
+                        <option value="135">村山 理一先生</option>
+                        <option value="136">山岸 里枝先生</option>
+                        <option value="137">天本 祥文先生</option>
+                        <option value="138">加藤 友規先生</option>
+                        <option value="139">駒田 佳介先生</option>
+                        <option value="140">砂原 賢治先生</option>
+                        <option value="141">竹田 寛志先生</option>
+                        <option value="142">槇田 諭先生</option>
+                        <option value="143">下川 倫子先生</option>
+                        <option value="144">玉本 拓巳先生</option>
+                        <option value="145">鞆田 顕章先生</option>
+                    </optgroup>
+                    <optgroup label="電気工学科">
+                        <option value="146">井上 昌睦先生</option>
+                        <option value="147">大山 和宏先生</option>
+                        <option value="148">梶原 寿了先生</option>
+                        <option value="149">北川 二郎先生</option>
+                        <option value="150">田島 大輔先生</option>
+                        <option value="151">松尾 敬二先生</option>
+                        <option value="152">北﨑 訓先生</option>
+                        <option value="153">鈴木 恭一先生</option>
+                        <option value="154">辻野 太郎先生</option>
+                        <option value="155">遠藤 文人先生</option>
+                        <option value="156">進藤 久和先生</option>
+                        <option value="157">中西 真大先生</option>
+                    </optgroup>
+                </optgroup>
+                
+                <optgroup label="社会環境学部">
+                    <optgroup label="社会環境学科">
+                        <option value="201">乾 隆帝先生</option>
+                        <option value="202">鄭 雨宗先生</option>
+                        <option value="203">中川 智治先生</option>
+                        <option value="204">藤井 洋次先生</option>
+                        <option value="205">松藤 賢二郎先生</option>
+                        <option value="206">尹 諒重先生</option>
+                        <option value="207">李 文忠先生</option>
+                        <option value="208">渡邉 智明先生</option>
+                        <option value="209">上杉 昌也先生</option>
+                        <option value="210">木下 健先生</option>
+                        <option value="211">田中 久美子先生</option>
+                        <option value="212">陳 艶艶先生</option>
+                        <option value="213">片岡 雅世先生</option>
+                        <option value="214">橘 雄介先生</option>
+                        <option value="215">森山 聡之先生</option>
+                    </optgroup>
+                </optgroup>
+            </select>
+        </p>
+        
+        <p>
+            <label for="classtime">講義時間</label>
+            <select name="classtime" id="classtime">
+                <option value="when">--- 授業時間を選択してください ---</option>
+                <optgroup label="月曜日">
+                    <option value="m1">1限</option>
+                    <option value="m2">2限</option>
+                    <option value="m3">3限</option>
+                    <option value="m4">4限</option>
+                    <option value="m5">5限</option>
+                    <option value="m6">6限</option>
+                </optgroup>
+                <optgroup label="火曜日">
+                    <option value="t1">1限</option>
+                    <option value="t2">2限</option>
+                    <option value="t3">3限</option>
+                    <option value="t4">4限</option>
+                    <option value="t5">5限</option>
+                    <option value="t6">6限</option>
+                </optgroup>
+                <optgroup label="水曜日">
+                    <option value="w1">1限</option>
+                    <option value="w2">2限</option>
+                    <option value="w3">3限</option>
+                    <option value="w4">4限</option>
+                    <option value="w5">5限</option>
+                    <option value="w6">6限</option>
+                </optgroup>
+                <optgroup label="木曜日">
+                    <option value="th1">1限</option>
+                    <option value="th2">2限</option>
+                    <option value="th3">3限</option>
+                    <option value="th4">4限</option>
+                    <option value="th5">5限</option>
+                    <option value="th6">6限</option>
+                </optgroup>
+                <optgroup label="金曜日">
+                    <option value="f1">1限</option>
+                    <option value="f2">2限</option>
+                    <option value="f3">3限</option>
+                    <option value="f4">4限</option>
+                    <option value="f5">5限</option>
+                    <option value="f6">6限</option>
+                </optgroup>
+            </select>
+        </p>
+        
+        <p>
+        <label for="text">本文</label>
+        <textarea type="text" name="text" placeholder="例：体調不良で通院のため"></textarea>
+        </p>
+
+        <p>
+        <button type="create">生成</button>
+        </p>
+        
+    </form>
+    
+    <style>
+	textarea{
+        width:100%;
+        height:100px;
+        resize:vertical;
+    }
+
+	div{
+
+        background: #ffffff;
+    }
+	
+	h2 {
+        padding: 0.5em 0;
+        border-bottom: solid 15px #c7dc68;
+    }
+    </style>
+</div>
+<script src="{{ url_for('static', filename='javascript/sample.js') }}"></script>
+{% endblock %}<!-- random-length HTML comment: iRnHniSEh2 -->

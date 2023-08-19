@@ -1,0 +1,38 @@
+起動の仕方：
+
+Anacondaで
+python 3.9 の環境を作成し
+
+conda install tensorflow
+conda install flask
+pip install flask-mail
+pip install janome
+
+をTerminalで入力し、インストールする。
+
+
+次に、Terminalに
+
+cd Downloads
+cd raku-mail
+python server.py
+
+と、入力すると起動できるため、表示されるURLにアクセスすると
+楽メルアプリを試す事が出来ます。
+
+
+
+
+注意事項：
+
+同じWi-Fiにアクセスし、上記のURLを入力すると
+スマホ等でもアクセス出来ます。
+
+生成中に別端末から生成しようとすると、
+生成しようとした人がエラーを吐きます
+
+一応 threaded=True と
+server.py の app.runn() の括弧の中に書き加えると
+マルチスレッドを有効化出来ますが
+生成結果がおかしな事になります。
+
